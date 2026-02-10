@@ -2,16 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>CricxCrate – Live Cricket</title>
+<title>CricxCrate – Star Sports 2 hindi HD Live</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- SHAKA PLAYER (for MPD + DRM) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.9/shaka-player.compiled.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/shaka-player.compiled.js"></script>
 
 <style>
 *{box-sizing:border-box}
-
-/* BASE LIGHT THEME */
 body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;
@@ -19,15 +16,10 @@ body{
   color:#111827;
   user-select:none;
 }
-iframe{border:none}
-
-/* BLUR WHEN POPUP (but allow video interactions) */
 body.popup-active .main-content > :not(.player-wrap){
   filter:blur(6px);
   pointer-events:none;
 }
-
-/* GLASS CARDS */
 .glass{
   background:rgba(255,255,255,.72);
   backdrop-filter:blur(16px);
@@ -35,8 +27,6 @@ body.popup-active .main-content > :not(.player-wrap){
   border:1px solid rgba(255,255,255,.45);
   box-shadow:0 12px 30px rgba(0,0,0,.08);
 }
-
-/* TOP BAR */
 .top-bar{
   max-width:950px;
   margin:14px auto;
@@ -45,8 +35,6 @@ body.popup-active .main-content > :not(.player-wrap){
   font-weight:600;
   border-radius:18px;
 }
-
-/* PLAYER */
 .player-wrap{
   max-width:950px;
   margin:0 auto;
@@ -54,21 +42,14 @@ body.popup-active .main-content > :not(.player-wrap){
   border-radius:20px;
   overflow:hidden;
   box-shadow:0 14px 30px rgba(0,0,0,.15);
+  position: relative;
+  aspect-ratio: 16/9;
 }
-.player-wrap video{
-  width:100%;
-  height:55vh;
-  background:#000;
+video {
+  width: 100%;
+  height: 100%;
+  outline: none;
 }
-
-/* MOBILE VIDEO HEIGHT */
-@media(max-width:768px){
-  .player-wrap video{
-    height:42vh;
-  }
-}
-
-/* SECTIONS */
 .section{
   max-width:950px;
   margin:14px auto;
@@ -86,11 +67,9 @@ body.popup-active .main-content > :not(.player-wrap){
   font-size:16px;
   font-weight:600;
 }
-
-/* BUTTONS */
 .btn{
   background:rgba(255,255,255,.9);
-  color:#FF6B6B;
+  color:#00a8e1;
   padding:12px 22px;
   border-radius:16px;
   font-weight:600;
@@ -100,19 +79,15 @@ body.popup-active .main-content > :not(.player-wrap){
   box-shadow:0 6px 14px rgba(0,0,0,.08);
 }
 .btn.primary{
-  background:#FF6B6B;
+  background:#00a8e1;
   color:#fff;
   border:none;
 }
-
-/* TAP FEEDBACK */
 .btn:active,
 .popup-box a:active,
 .popup-box button:active{
   transform:scale(.96);
 }
-
-/* BANNER */
 .banner{
   max-width:950px;
   margin:20px auto;
@@ -163,42 +138,32 @@ body.popup-active .main-content > :not(.player-wrap){
   cursor:pointer;
   text-decoration:none;
 }
-.popup-join{
-  background:#FF6B6B;
-  color:#fff;
-}
-.popup-done{
-  background:rgba(255,255,255,.9);
-  color:#FF6B6B;
-}
+.popup-join{background:#00a8e1;color:#fff}
+.popup-done{background:rgba(255,255,255,.9);color:#00a8e1}
 </style>
 </head>
 
 <body oncontextmenu="return false">
 
-<!-- POPUP -->
 <div class="popup" id="popup">
   <div class="popup-box">
     <h2>Welcome 🤩</h2>
     <p>Join Telegram for live match updates</p>
-    <a class="popup-join" href="https://t.me/CricxCrate" target="_blank">Join @CricxCrate</a>
+    <a class="popup-join" href="Https://t.me/+t991_pRD-zs5NzY1" target="_blank">Join Channel</a>
     <button class="popup-done" onclick="closePopup()">Already Joined</button>
   </div>
 </div>
 
-<!-- MAIN CONTENT -->
 <div class="main-content">
+  <div class="top-bar glass">CricxCrate • Star Sports 2 Hindi HD</div>
 
-  <div class="top-bar glass">CricxCrate • Star Sporst 2 Hindi HD</div>
-
-  <!-- NEW DASH PLAYER -->
   <div class="player-wrap">
     <video id="video" controls autoplay playsinline></video>
   </div>
 
   <div class="section glass">
     <h3>⚡ Join Telegram For Live Updates</h3>
-    <a class="btn primary" href="https://t.me/CricxCrate" target="_blank">Join Telegram</a>
+    <a class="btn primary" href="Https://t.me/+t991_pRD-zs5NzY1" target="_blank">Join Telegram</a>
     <a class="btn" href="https://t.me/CricxCratelinks" target="_blank">All Channels</a>
   </div>
 
@@ -208,19 +173,44 @@ body.popup-active .main-content > :not(.player-wrap){
     <button class="btn" onclick="copyLink()">Copy Link</button>
   </div>
 
-  <a href="https://t.me/CricxCrate" target="_blank" style="text-decoration:none;color:inherit">
+  <a href="Https://t.me/+t991_pRD-zs5NzY1" target="_blank" style="text-decoration:none;color:inherit">
     <div class="banner glass">
       <img src="https://telegram.org/img/t_logo.png">
-      Join @CricxCrate
+      Join Channel
     </div>
   </a>
-
 </div>
 
 <script>
+/* SHAKA PLAYER LOGIC */
+async function initPlayer() {
+  const video = document.getElementById('video');
+  const player = new shaka.Player(video);
+
+  // Apply New ClearKey DRM
+  player.configure({
+    drm: {
+      clearKeys:{
+          "bd1ea6a1c1fb5dcdb709434e0826bbc0":
+          "f57f22cba32739ce7beb1fab3f3d060b"
+        }
+      }
+    });
+
+  try {
+    // Load Star Sports MPD Manifest
+    await player.load("https://jiotvpllive.cdn.jio.com/bpk-tv/Sports18_1_HD_BTS/output/index.mpd");
+    console.log('Star Sports HD 1 loaded!');
+  } catch (e) {
+    console.error('Error loading stream:', e);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', initPlayer);
+
+/* UI LOGIC */
 const popup = document.getElementById("popup");
 
-/* SHARE & COPY */
 function copyLink(){
   navigator.clipboard.writeText(location.href);
   alert("Link copied!");
@@ -228,55 +218,24 @@ function copyLink(){
 
 function sharePage(){
   if(navigator.share){
-    navigator.share({title:"Live Cricket – CricxCrate", url:location.href});
+    navigator.share({title:"Star Sports HD 1 Live – CricxCrate", url:location.href});
   }
 }
 
-/* POPUP */
 function closePopup(){
-  popup.style.opacity = "0";
-  setTimeout(() => {
-    popup.style.display = "none";
+  popup.style.opacity="0";
+  setTimeout(()=>{
+    popup.style.display="none";
     document.body.classList.remove("popup-active");
     sessionStorage.setItem("joined","yes");
-  }, 300);
+  },300);
 }
 
-if(sessionStorage.getItem("joined") !== "yes"){
+if(sessionStorage.getItem("joined")!=="yes"){
   document.body.classList.add("popup-active");
 }else{
-  popup.style.display = "none";
+  popup.style.display="none";
 }
-
-/* =========================
-   SHAKA PLAYER (MPD + KEY)
-   ========================= */
-async function initPlayer(){
-  const video = document.getElementById('video');
-  const player = new shaka.Player(video);
-
-  try{
-    await player.configure({
-      drm:{
-        clearKeys:{
-          "bd1ea6a1c1fb5dcdb709434e0826bbc0":
-          "f57f22cba32739ce7beb1fab3f3d060b"
-        }
-      }
-    });
-
-    await player.load(
-      "https://jiotvpllive.cdn.jio.com/bpk-tv/Sports18_1_HD_BTS/output/index.mpd"
-    );
-
-    console.log("Stream loaded");
-  }
-  catch(e){
-    console.error("Error loading stream:", e);
-  }
-}
-
-document.addEventListener("DOMContentLoaded", initPlayer);
 </script>
 
 </body>

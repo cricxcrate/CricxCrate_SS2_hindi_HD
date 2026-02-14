@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>CricxCrate – Star Sports 2 hindi HD Live</title>
+<title>CricxCrate – Star Sports Hindi</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/shaka-player.compiled.js"></script>
+<meta name="referrer" content="no-referrer">
 
 <style>
 *{box-sizing:border-box}
@@ -45,10 +44,10 @@ body.popup-active .main-content > :not(.player-wrap){
   position: relative;
   aspect-ratio: 16/9;
 }
-video {
+iframe {
   width: 100%;
   height: 100%;
-  outline: none;
+  border: none;
 }
 .section{
   max-width:950px;
@@ -77,16 +76,15 @@ video {
   cursor:pointer;
   text-decoration:none;
   box-shadow:0 6px 14px rgba(0,0,0,.08);
+  transition: transform 0.2s ease;
 }
 .btn.primary{
   background:#00a8e1;
   color:#fff;
   border:none;
 }
-.btn:active,
-.popup-box a:active,
-.popup-box button:active{
-  transform:scale(.96);
+.btn:active{
+  transform:scale(.95);
 }
 .banner{
   max-width:950px;
@@ -155,10 +153,14 @@ video {
 </div>
 
 <div class="main-content">
-  <div class="top-bar glass">CricxCrate • Star Sports 2 Hindi HD</div>
+  <div class="top-bar glass">CricxCrate • Star Sports Hindi</div>
 
   <div class="player-wrap">
-    <video id="video" controls autoplay playsinline></video>
+    <iframe src="https://allrounder-king.pages.dev/channel/star-sports-2-hindi" 
+            referrerpolicy="no-referrer"
+            sandbox="allow-scripts allow-same-origin allow-forms" 
+            allow="autoplay; encrypted-media" 
+            allowfullscreen></iframe>
   </div>
 
   <div class="section glass">
@@ -182,32 +184,6 @@ video {
 </div>
 
 <script>
-/* SHAKA PLAYER LOGIC */
-async function initPlayer() {
-  const video = document.getElementById('video');
-  const player = new shaka.Player(video);
-
-  // Apply New ClearKey DRM
-  player.configure({
-    drm: {
-      clearKeys:{
-          "bd1ea6a1c1fb5dcdb709434e0826bbc0":
-          "f57f22cba32739ce7beb1fab3f3d060b"
-        }
-      }
-    });
-
-  try {
-    // Load Star Sports MPD Manifest
-    await player.load("https://jiotvpllive.cdn.jio.com/bpk-tv/Sports18_1_HD_BTS/output/index.mpd");
-    console.log('Star Sports HD 1 loaded!');
-  } catch (e) {
-    console.error('Error loading stream:', e);
-  }
-}
-
-document.addEventListener('DOMContentLoaded', initPlayer);
-
 /* UI LOGIC */
 const popup = document.getElementById("popup");
 
@@ -218,7 +194,10 @@ function copyLink(){
 
 function sharePage(){
   if(navigator.share){
-    navigator.share({title:"Star Sports HD 1 Live – CricxCrate", url:location.href});
+    navigator.share({
+      title: "Star Sports Hindi Live – CricxCrate", 
+      url: location.href
+    });
   }
 }
 
@@ -227,15 +206,21 @@ function closePopup(){
   setTimeout(()=>{
     popup.style.display="none";
     document.body.classList.remove("popup-active");
-    sessionStorage.setItem("joined","yes");
+    sessionStorage.setItem("joined_hindi","yes");
   },300);
 }
 
-if(sessionStorage.getItem("joined")!=="yes"){
+if(sessionStorage.getItem("joined_hindi") !== "yes"){
   document.body.classList.add("popup-active");
-}else{
-  popup.style.display="none";
+} else {
+  popup.style.display = "none";
 }
+
+/* ANTI-AD SCRIPT */
+// This helps prevent the page from being redirected when an ad inside the iframe tries to take over the main window
+window.onbeforeunload = function() {
+    return null; 
+};
 </script>
 
 </body>

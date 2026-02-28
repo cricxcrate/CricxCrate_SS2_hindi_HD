@@ -156,10 +156,11 @@ iframe {
   <div class="top-bar glass">CricxCrate • Star Sports Hindi</div>
 
   <div class="player-wrap">
-    <iframe src="https://allrounder-king.pages.dev/channel/star-sports-2-hindi" 
+    <iframe id="video-player" 
+            src="https://jiogo.pages.dev/?id=1984" 
             referrerpolicy="no-referrer"
-            sandbox="allow-scripts allow-same-origin allow-forms" 
-            allow="autoplay; encrypted-media" 
+            sandbox="allow-scripts allow-same-origin allow-forms allow-presentation" 
+            allow="autoplay; encrypted-media; fullscreen" 
             allowfullscreen></iframe>
   </div>
 
@@ -173,6 +174,7 @@ iframe {
     <h3>❤️ Share & Support</h3>
     <button class="btn primary" onclick="sharePage()">Share</button>
     <button class="btn" onclick="copyLink()">Copy Link</button>
+    <button class="btn" onclick="refreshPlayer()">Refresh Stream</button>
   </div>
 
   <a href="Https://t.me/+t991_pRD-zs5NzY1" target="_blank" style="text-decoration:none;color:inherit">
@@ -201,6 +203,13 @@ function sharePage(){
   }
 }
 
+function refreshPlayer() {
+  const iframe = document.getElementById('video-player');
+  const currentSrc = iframe.src;
+  iframe.src = '';
+  iframe.src = currentSrc;
+}
+
 function closePopup(){
   popup.style.opacity="0";
   setTimeout(()=>{
@@ -216,8 +225,7 @@ if(sessionStorage.getItem("joined_hindi") !== "yes"){
   popup.style.display = "none";
 }
 
-/* ANTI-AD SCRIPT */
-// This helps prevent the page from being redirected when an ad inside the iframe tries to take over the main window
+/* ANTI-REDIRECT SCRIPT */
 window.onbeforeunload = function() {
     return null; 
 };
